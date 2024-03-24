@@ -3,8 +3,13 @@ import Box from "@mui/material/Box";
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import DeleteIcon from "@mui/icons-material/Delete";
+import PropTypes from "prop-types";
 
-export default function ListItem() {
+ListItem.propTypes = {
+  todoContent: PropTypes.string,
+};
+
+export default function ListItem({ todoContent }) {
   return (
     <Box
       sx={{
@@ -23,19 +28,20 @@ export default function ListItem() {
         }}
         elevation={2}
       >
-        <p>This is the first to do rtasj</p>
+        <p>{todoContent}</p>
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            padding: "2px 0px 2px 16px",
+            padding: "2px 16px 2px 16px",
             bgcolor: "#DCDCDC",
             color: "black",
+            gap: "4px",
           }}
         >
-          <DeleteIcon />
           <Checkbox />
+          <DeleteIcon />
         </Box>
       </Paper>
     </Box>

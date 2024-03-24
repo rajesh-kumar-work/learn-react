@@ -1,8 +1,14 @@
-import React from "react";
+import { React } from "react";
 import Box from "@mui/material/Box";
 import ListItem from "./components/ListItem";
+import AddItemBox from "./components/AddItemBox";
 
 export default function App() {
+  const todos = [
+    { id: 1, text: "Learn React", completed: false },
+    { id: 2, text: "Build a project", completed: false },
+    { id: 3, text: "Deploy project", completed: false },
+  ];
   return (
     <Box
       sx={{
@@ -25,11 +31,14 @@ export default function App() {
           m: "0px",
           width: "50%",
           borderRadius: "16px",
+          gap: "16px",
         }}
       >
         <h1>ToDo List</h1>
-
-        <ListItem></ListItem>
+        <AddItemBox></AddItemBox>
+        {todos.map((todo) => (
+          <ListItem key={todo.id} todoContent={todo.text}></ListItem>
+        ))}
       </Box>
     </Box>
   );
