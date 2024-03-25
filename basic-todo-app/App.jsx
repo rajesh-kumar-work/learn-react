@@ -1,14 +1,27 @@
-import { React } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import ListItem from "./components/ListItem";
 import AddItemBox from "./components/AddItemBox";
 
 export default function App() {
-  const todos = [
-    { id: 1, text: "Learn React", completed: false },
-    { id: 2, text: "Build a project", completed: false },
-    { id: 3, text: "Deploy project", completed: false },
-  ];
+  const [todos, setTodos] = useState([
+    { id: 1, text: "Learn React" },
+    { id: 2, text: "Build a project" },
+    { id: 3, text: "Deploy project" },
+  ]);
+
+  const handleDelete = (todoId) => {
+    setTodos(todos.filter((todo) => todo.id !== todoId));
+  };
+
+  const handleAdd = (task) => {
+    const newTodo = {
+      id: todos.length + 1,
+      text: task,
+    };
+    setTodos([newTodo, ...todos]);
+  };
+
   return (
     <Box
       sx={{
@@ -35,9 +48,14 @@ export default function App() {
         }}
       >
         <h1>ToDo List</h1>
-        <AddItemBox></AddItemBox>
+        <AddItemBox handleAdd={handleAdd}></AddItemBox>
         {todos.map((todo) => (
-          <ListItem key={todo.id} todoContent={todo.text}></ListItem>
+          <ListItem
+            key={todo.id}
+            id={todo.id}
+            todoContent={todo.text}
+            onDelete={handleDelete}
+          ></ListItem>
         ))}
       </Box>
     </Box>

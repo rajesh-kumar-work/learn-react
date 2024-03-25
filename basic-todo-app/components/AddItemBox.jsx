@@ -1,7 +1,18 @@
-import { TextField, Button, Box } from "@mui/material";
-import React from "react";
+import { Button, Box } from "@mui/material";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-export default function AddItemBox() {
+AddItemBox.propTypes = {
+  handleAdd: PropTypes.func,
+};
+
+export default function AddItemBox({ handleAdd }) {
+  const [newTask, setNewTask] = useState("");
+
+  const onAdd = () => {
+    setNewTask("");
+    handleAdd(newTask);
+  };
   return (
     <Box
       sx={{
@@ -11,16 +22,26 @@ export default function AddItemBox() {
         marginBottom: "32px",
         color: "black",
         borderRadius: "32px",
+        bgcolor: "#ebebeb",
         width: "80%",
       }}
     >
-      <TextField
-        sx={{ flex: "1", border: "none" }}
-        id="filled-basic"
-        label="New Todo ..."
-        variant="filled"
-      />
+      <input
+        value={newTask}
+        onChange={(event) => setNewTask(event.target.value)}
+        style={{
+          flex: "1",
+          backgroundColor: "#ebebeb",
+          border: "none",
+          borderRadius: "32px",
+          fontSize: "20px",
+          paddingLeft: "5px",
+          color: "green",
+          textDecoration: "none",
+        }}
+      ></input>
       <Button
+        onClick={onAdd}
         sx={{
           bgcolor: "#32CD32",
           borderRadius: "50% ",
