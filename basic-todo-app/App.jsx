@@ -16,7 +16,7 @@ export default function App() {
 
   const handleAdd = (task) => {
     const newTodo = {
-      id: todos.length + 1,
+      id: Date.now(),
       text: task,
     };
     setTodos([newTodo, ...todos]);

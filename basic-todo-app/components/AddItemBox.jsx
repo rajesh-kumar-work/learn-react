@@ -16,8 +16,8 @@ export default function AddItemBox({ handleAdd }) {
       return;
     }
     setError(false);
-    setNewTask("");
     handleAdd(newTask);
+    setNewTask("");
   };
 
   return (
@@ -26,7 +26,7 @@ export default function AddItemBox({ handleAdd }) {
         display: "flex",
         flexDirection: "column",
         padding: "0px",
-        marginBottom: "32px",
+        paddingBottom: "32px",
         width: "80%",
       }}
     >
@@ -73,7 +73,7 @@ export default function AddItemBox({ handleAdd }) {
         </Button>
       </Box>
       {error && (
-        <p style={{ color: "red", paddingLeft: "10PX" }}>
+        <p style={{ color: "red", paddingLeft: "10px" }}>
           New Task Cannot Be Empty
         </p>
       )}
